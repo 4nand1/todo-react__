@@ -1,23 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
-import { nanoid } from "nanoid";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import React, { useState } from "react";
-
+import { nanoid } from "nanoid";
 
 export const Todo = () => {
   const [todos, setTodos] = useState([]);
@@ -62,44 +56,18 @@ export const Todo = () => {
 
         <CardFooter className="flex flex-col gap-4">
           <div className="flex justify-center gap-2">
+          {tabs.map((tab) => (
             <Button
               key={tab}
-              className="0"
-              variant="default"
+              variant={selectedButton === tab ? "blue" : "outline"}
               size="sm"
-              style={{
-                backgroundColor:
-                  tab === selectedButton ? "blue" : "transparent",
-              }}
-              onClick={() => {
-                setSelectedButton();
-              }}
+              onClick={() => setSelectedButton(tab)}
             >
-              All
+              {tab}
             </Button>
-            <Button
-              key={tab}
-              variant="outline"
-              size="sm"
-              style={{
-                backgroundColor:
-                  tab === selectedButton ? "blue" : "transparent",
-              }}
-            >
-              Active
-            </Button>
-            <Button
-              key={tab}
-              variant="outline"
-              size="sm"
-              style={{
-                backgroundColor:
-                  tab === selectedButton ? "blue" : "transparent",
-              }}
-            >
-              Completed
-            </Button>
+          ))}
           </div>
+
           <div className="flex flex-col gap-4">
             {todos.map((item) => (
               <Card key={item.id}>
@@ -117,8 +85,8 @@ export const Todo = () => {
                       setTodos(newTodos);
                     }}
                   />
-                  <p className="flex-1">{item.text}</p>
-                  <Button>Delete</Button>
+                  <p className=" w-full flex-1">{item.text}</p>
+                  <Button className="bg-red-600">Delete</Button>
                 </CardContent>
               </Card>
             ))}
