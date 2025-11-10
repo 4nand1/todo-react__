@@ -61,6 +61,9 @@ export const Todo = () => {
               key={tab}
               variant={selectedButton === tab ? "blue" : "outline"}
               size="sm"
+              style={{ 
+                backgroundColor: tab === selectedButton ? "blue" : "transparent",
+              }}
               onClick={() => setSelectedButton(tab)}
             >
               {tab}
@@ -69,10 +72,15 @@ export const Todo = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            {todos.map((item) => (
+            {todos.filter((item) => {
+              if (selectedButton === "All") return true;
+              if (selectedButton === "Completed") return item.isDone ===true;
+              return item.isDone === false;
+            }).map((item) => (
               <Card key={item.id}>
                 <CardContent className="flex gap-4 items-center">
                   <Checkbox
+                  checked={item.isDone}
                     onClick={() => {
                       const newTodos = todos.map((todo) => {
                         if (todo.id !== item.id) return todo;
