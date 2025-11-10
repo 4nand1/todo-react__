@@ -8,7 +8,9 @@ export default function Home() {
   const [tasks, setTasks] = useState([]);
 
   const handleSave = () => {
+    if (task.trim() === "") return; 
     setTasks((prev) => [...prev, task]);
+     setTask("");
   };
   return (
     <div className="flex flex-col w-[300px] gap-3 m-auto mt-60">
@@ -21,7 +23,18 @@ export default function Home() {
       <button
         onClick={handleSave}
         className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
-      ></button>
+      >Add Task</button>
+      <div className="mt-4 flex flex-col gap-2">
+  {tasks.map((t, i) => (
+    <div
+      key={i}
+      className="border border-gray-200 rounded-md px-3 py-2 text-gray-700"
+    >
+      {t}
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }
