@@ -6,7 +6,7 @@ export const FilterTabs = ({ selectedButton, setSelectedButton }) => {
   const tabs = ["All", "Active", "Completed"];
 
   return (
-    <div className="flex justify-center gap-2">
+    <div className="flex justify-center gap-2 w-fit">
       {tabs.map((tab) => (
         <Button
           key={tab}
