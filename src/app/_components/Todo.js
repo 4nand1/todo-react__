@@ -38,7 +38,8 @@ export const Todo = () => {
             placeholder="Add a new task..."
           />
           <Button
-            className="bg-blue-500 hover:bg-blue-600 text-white "
+            className="bg-blue-500 hover:bg-blue-600 text-white disabled:bg-gray-400 disabled:cursor-not-allowed"
+            disabled={value.trim() === ""}
             onClick={() => {
               setTodos([
                 ...todos,
